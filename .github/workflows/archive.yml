@@ -7,7 +7,7 @@ on:
       - main
     paths:
       - package.json
-      - scripts/archive.mjs
+      - scripts/**
       - .github/workflows/archive.yml
 
 permissions:
@@ -20,7 +20,7 @@ concurrency:
 jobs:
   archive:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 18
 
     steps:
       - name: Check out repository
@@ -34,24 +34,32 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
-      - name: Validate archiver syntax
+      - name: Validate scripts
         run: npm run check
 
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
-      - name: Capture programmer
+      - name: Capture and validate programmer
         id: capture
         continue-on-error: true
         shell: bash
         run: |
           set -o pipefail
-          mkdir -p snapshot
+          mkdir -p diagnostics
           for attempt in 1 2 3; do
+            log="diagnostics/archive-attempt-${attempt}.log"
             echo "Capture attempt ${attempt}"
-            if npm run archive 2>&1 | tee "snapshot/archive-attempt-${attempt}.log"; then
+            if {
+              npm run archive &&
+              npm run sanitize &&
+              npm run validate
+            } 2>&1 | tee "$log"; then
+              cp "$log" snapshot/
               exit 0
             fi
+            mkdir -p snapshot
+            cp "$log" snapshot/ || true
             sleep 15
           done
           exit 1
@@ -75,12 +83,12 @@ jobs:
           if git diff --cached --quiet; then
             echo "No archive changes to commit"
           else
-            git commit -m "Archive Remee programmer"
+            git commit -m "Archive and validate Remee programmer"
             git push
           fi
 
       - name: Verify capture succeeded
         if: steps.capture.outcome == 'failure'
         run: |
-          echo "The live programmer could not be captured. Open the uploaded remee-capture artifact for the browser screenshot and logs."
+          echo "The programmer failed offline validation. Open the remee-capture artifact for logs and screenshots."
           exit 1
