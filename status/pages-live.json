@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-07-18T04:26:41Z",
+  "pagesApi": "https://api.github.com/repos/janisxyz/Remee/pages",
+  "pagesApiStatus": "200",
+  "siteUrl": "https://janisxyz.github.io/Remee/",
+  "httpStatus": "200",
+  "contentMatched": true,
+  "pages": {
+    "url": "https://api.github.com/repos/janisxyz/Remee/pages",
+    "status": "built",
+    "cname": null,
+    "custom_404": false,
+    "html_url": "https://janisxyz.github.io/Remee/",
+    "build_type": "legacy",
+    "source": {
+      "branch": "archive-programmer",
+      "path": "/"
+    },
+    "public": true,
+    "protected_domain_state": null,
+    "pending_domain_unverified_at": null,
+    "https_enforced": true
+  }
+}
