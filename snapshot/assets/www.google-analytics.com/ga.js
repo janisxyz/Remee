@@ -45,6 +45,15 @@
     });
   };
 
+  document.addEventListener('error', (event) => {
+    const image = event.target;
+    if (!(image instanceof HTMLImageElement)) return;
+    const source = image.getAttribute('src') || '';
+    if (/\d+s\.gif(?:[?#].*)?$/i.test(source)) {
+      originalSetAttribute.call(image, 'src', source.replace(/s\.gif/i, 'f.gif'));
+    }
+  }, true);
+
   document.addEventListener('DOMContentLoaded', () => {
     repairImages();
     document.querySelectorAll('#user_info, #short_url').forEach((element) => {
