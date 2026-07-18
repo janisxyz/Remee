@@ -2,11 +2,14 @@ name: Archive Remee programmer
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '17 3 1 * *'
   push:
     branches:
       - main
     paths:
       - package.json
+      - package-lock.json
       - scripts/**
       - .github/workflows/archive.yml
 
@@ -30,22 +33,33 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: npm
 
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Validate scripts
         run: npm run check
 
-      - name: Install Chromium
-        run: npx playwright install --with-deps chromium
+      - name: Cache Playwright Chromium
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Chromium system dependencies
+        run: npx playwright install-deps chromium
+
+      - name: Install Chromium browser
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: npx playwright install chromium
 
       - name: Capture and validate programmer
-        id: capture
-        continue-on-error: true
         shell: bash
         run: |
-          set -o pipefail
+          set -euo pipefail
+          rm -rf diagnostics
           mkdir -p diagnostics
           for attempt in 1 2 3; do
             log="diagnostics/archive-attempt-${attempt}.log"
@@ -55,40 +69,32 @@ jobs:
               npm run sanitize &&
               npm run validate
             } 2>&1 | tee "$log"; then
-              cp "$log" snapshot/
               exit 0
             fi
-            mkdir -p snapshot
-            cp "$log" snapshot/ || true
             sleep 15
           done
           exit 1
 
-      - name: Upload capture diagnostics
-        if: always()
+      - name: Upload capture diagnostics on failure
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: remee-capture
-          path: snapshot/
+          name: remee-capture-diagnostics
+          path: |
+            diagnostics/
+            snapshot/
           if-no-files-found: warn
           retention-days: 14
 
       - name: Commit captured snapshot
-        if: always()
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
+          git add snapshot package-lock.json
           if git diff --cached --quiet; then
             echo "No archive changes to commit"
           else
             git commit -m "Archive and validate Remee programmer"
             git push
           fi
-
-      - name: Verify capture succeeded
-        if: steps.capture.outcome == 'failure'
-        run: |
-          echo "The programmer failed offline validation. Open the remee-capture artifact for logs and screenshots."
-          exit 1
