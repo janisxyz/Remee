@@ -16,6 +16,7 @@ const mimeTypes = {
   '.html': 'text/html; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
   '.json': 'application/json; charset=utf-8',
+  '.php': 'text/html; charset=utf-8',
   '.png': 'image/png',
   '.svg': 'image/svg+xml',
   '.woff': 'font/woff',
@@ -74,6 +75,7 @@ let result;
 try {
   await page.goto(origin, { waitUntil: 'networkidle', timeout: 30_000 });
   await page.waitForSelector('#update_button', { state: 'visible', timeout: 10_000 });
+  await page.waitForTimeout(500);
 
   const initial = await page.evaluate(() => ({
     title: document.title,
@@ -95,16 +97,26 @@ try {
   if (!sequence.startsWith('11010010')) throw new Error('Handshake bits are incorrect');
 
   await page.click('#update_button');
-  await page.waitForFunction(() => {
-    const clock = document.querySelector('#blinker_clock');
-    const data = document.querySelector('#blinker_data');
-    return clock && data && getComputedStyle(clock).display !== 'none' && getComputedStyle(data).display !== 'none';
-  }, { timeout: 8_000 });
 
-  await page.waitForFunction(() => {
-    const message = document.querySelector('#blinker_info .post_message');
-    return message && getComputedStyle(message).display !== 'none';
-  }, { timeout: 22_000 });
+  await page.waitForFunction(() => (
+    typeof window.sequence === 'string' &&
+    /^[01]{72}$/.test(window.sequence) &&
+    window.sequence_timer !== null
+  ), { timeout: 5_000 });
+
+  await page.waitForFunction(() => Number(window.sequence_index) > 0, { timeout: 9_000 });
+  const activeState = await page.evaluate(() => ({
+    sequenceIndex: Number(window.sequence_index),
+    sequenceLength: window.sequence?.length || 0,
+    timerActive: window.sequence_timer !== null,
+    clockColor: getComputedStyle(document.querySelector('#blinker_clock')).backgroundColor,
+    dataColor: getComputedStyle(document.querySelector('#blinker_data')).backgroundColor,
+  }));
+
+  await page.waitForFunction(() => (
+    window.sequence_timer === null &&
+    Number(window.sequence_index) === window.sequence?.length
+  ), { timeout: 20_000 });
 
   if (pageErrors.length) throw new Error(`Browser errors: ${pageErrors.join('\n')}`);
   if (externalRequests.length) throw new Error(`External requests attempted: ${externalRequests.join(', ')}`);
@@ -114,6 +126,8 @@ try {
     title: initial.title,
     sequenceBits: sequence.length,
     handshake: sequence.slice(0, 8),
+    updateButtonTriggered: true,
+    firstObservedSequenceIndex: activeState.sequenceIndex,
     transmissionCompleted: true,
     externalRequests: 0,
     pageErrors: 0,
@@ -129,4 +143,4 @@ try {
 
 await access(path.join(snapshotDir, 'validation.json'));
 const saved = JSON.parse(await readFile(path.join(snapshotDir, 'validation.json'), 'utf8'));
-if (!saved.transmissionCompleted) process.exitCode = 1;
+if (!saved.updateButtonTriggered || !saved.transmissionCompleted) process.exitCode = 1;
