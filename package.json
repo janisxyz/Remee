@@ -5,8 +5,10 @@
   "type": "module",
   "description": "Offline preservation tooling for the Remee optical programmer",
   "scripts": {
-    "check": "node --check scripts/archive.mjs",
-    "archive": "node scripts/archive.mjs"
+    "check": "node --check scripts/archive.mjs && node --check scripts/sanitize.mjs && node --check scripts/validate-offline.mjs",
+    "archive": "node scripts/archive.mjs",
+    "sanitize": "node scripts/sanitize.mjs",
+    "validate": "node scripts/validate-offline.mjs"
   },
   "dependencies": {
     "playwright": "1.55.0"
