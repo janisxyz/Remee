@@ -13,10 +13,14 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: remee-archive-main
+  cancel-in-progress: true
+
 jobs:
   archive:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
 
     steps:
       - name: Check out repository
@@ -26,10 +30,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: npm
 
       - name: Install dependencies
         run: npm install --no-audit --no-fund
+
+      - name: Validate archiver syntax
+        run: npm run check
 
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
@@ -37,14 +43,35 @@ jobs:
       - name: Capture programmer
         id: capture
         continue-on-error: true
-        run: npm run archive
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p snapshot
+          for attempt in 1 2 3; do
+            echo "Capture attempt ${attempt}"
+            if npm run archive 2>&1 | tee "snapshot/archive-attempt-${attempt}.log"; then
+              exit 0
+            fi
+            sleep 15
+          done
+          exit 1
+
+      - name: Upload capture diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: remee-capture
+          path: snapshot/
+          if-no-files-found: warn
+          retention-days: 14
 
       - name: Commit captured snapshot
         if: always()
+        shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add snapshot package-lock.json
+          git add -A
           if git diff --cached --quiet; then
             echo "No archive changes to commit"
           else
@@ -52,6 +79,8 @@ jobs:
             git push
           fi
 
-      - name: Fail if capture failed
+      - name: Verify capture succeeded
         if: steps.capture.outcome == 'failure'
-        run: exit 1
+        run: |
+          echo "The live programmer could not be captured. Open the uploaded remee-capture artifact for the browser screenshot and logs."
+          exit 1
