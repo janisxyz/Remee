@@ -9,6 +9,7 @@ on:
       - .github/workflows/verify.yml
       - scripts/sanitize.mjs
       - scripts/validate-offline.mjs
+      - scripts/offline-shim.js
       - snapshot/index.html
       - snapshot/assets/**
 
@@ -36,9 +37,6 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Validate tooling syntax
-        run: npm run check
-
       - name: Cache Playwright Chromium
         id: playwright-cache
         uses: actions/cache@v4
@@ -53,13 +51,20 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install chromium
 
-      - name: Sanitize snapshot
-        run: npm run sanitize
-
-      - name: Run offline browser validation
-        run: npm run validate
+      - name: Validate standalone snapshot
+        id: validation
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          {
+            npm run check
+            npm run sanitize
+            npm run validate
+          } 2>&1 | tee snapshot/verification-log.txt
 
       - name: Commit validation evidence
+        if: always()
         shell: bash
         run: |
           set -euo pipefail
@@ -70,6 +75,12 @@ jobs:
             echo "Validation produced no repository changes"
             exit 0
           fi
-          git commit -m "Validate standalone Remee programmer"
+          git commit -m "Record standalone Remee verification"
           git pull --rebase origin main
           git push origin HEAD:main
+
+      - name: Require successful validation
+        if: steps.validation.outcome == 'failure'
+        run: |
+          cat snapshot/verification-log.txt
+          exit 1
