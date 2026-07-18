@@ -1,0 +1,13 @@
+{
+  "name": "remee-programmer-archive",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Offline preservation tooling for the Remee optical programmer",
+  "scripts": {
+    "archive": "node scripts/archive.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.55.0"
+  }
+}
