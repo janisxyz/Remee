@@ -1,4 +1,4 @@
-name: Deploy Remee snapshot
+name: Deploy Remee programmer to Pages
 
 on:
   workflow_dispatch:
@@ -8,8 +8,6 @@ on:
     paths:
       - snapshot/**
       - .github/workflows/pages.yml
-  schedule:
-    - cron: '17 3 1 * *'
 
 permissions:
   contents: read
@@ -17,34 +15,42 @@ permissions:
   id-token: write
 
 concurrency:
-  group: github-pages
+  group: remee-pages
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  validate:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Verify snapshot
+      - name: Validate Pages artifact
+        shell: bash
         run: |
+          set -euo pipefail
           test -s snapshot/index.html
           touch snapshot/.nojekyll
 
-      - name: Configure Pages
+      - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
 
-      - name: Upload snapshot
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: snapshot
 
-      - name: Deploy
+  deploy:
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
