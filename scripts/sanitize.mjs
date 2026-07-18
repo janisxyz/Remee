@@ -1,0 +1,107 @@
+import { access, mkdir, readFile, writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import process from 'node:process';
+
+const root = process.cwd();
+const snapshot = path.join(root, 'snapshot');
+const indexPath = path.join(snapshot, 'index.html');
+const analyticsPath = path.join(snapshot, 'assets', 'www.google-analytics.com', 'ga.js');
+
+const shim = `/* Offline compatibility shim for the archived Remee programmer. */
+(() => {
+  'use strict';
+
+  const IMAGE_ROOT = 'assets/www.sleepwithremee.com/img/';
+  const rewriteImagePath = (value) => {
+    if (typeof value !== 'string') return value;
+    const match = value.match(/^(?:\\.\\.\\/|\\.\\/|\\/)?img\\/([^?#]+)([?#].*)?$/i);
+    return match ? \`${'${IMAGE_ROOT}'}${'${match[1]}'}${'${match[2] || \'\'}'}\` : value;
+  };
+
+  const originalSetAttribute = Element.prototype.setAttribute;
+  Element.prototype.setAttribute = function(name, value) {
+    if (this.tagName === 'IMG' && String(name).toLowerCase() === 'src') {
+      value = rewriteImagePath(String(value));
+    }
+    return originalSetAttribute.call(this, name, value);
+  };
+
+  const srcDescriptor = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, 'src');
+  if (srcDescriptor?.get && srcDescriptor?.set) {
+    Object.defineProperty(HTMLImageElement.prototype, 'src', {
+      configurable: true,
+      enumerable: srcDescriptor.enumerable,
+      get: srcDescriptor.get,
+      set(value) {
+        srcDescriptor.set.call(this, rewriteImagePath(String(value)));
+      },
+    });
+  }
+
+  const originalInsertBefore = Node.prototype.insertBefore;
+  Node.prototype.insertBefore = function(node, referenceNode) {
+    if (node?.tagName === 'SCRIPT' && /google-analytics\\.com|googletagmanager\\.com/i.test(node.src || '')) {
+      return node;
+    }
+    return originalInsertBefore.call(this, node, referenceNode);
+  };
+
+  const repairImages = (root = document) => {
+    root.querySelectorAll?.('img[src]').forEach((image) => {
+      const current = image.getAttribute('src');
+      const rewritten = rewriteImagePath(current);
+      if (rewritten !== current) originalSetAttribute.call(image, 'src', rewritten);
+    });
+  };
+
+  document.addEventListener('error', (event) => {
+    const image = event.target;
+    if (!(image instanceof HTMLImageElement)) return;
+    const source = image.getAttribute('src') || '';
+    if (/\\d+s\\.gif(?:[?#].*)?$/i.test(source)) {
+      originalSetAttribute.call(image, 'src', source.replace(/s\\.gif/i, 'f.gif'));
+    }
+  }, true);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    repairImages();
+    document.querySelectorAll('#user_info, #short_url').forEach((element) => {
+      element.style.display = 'none';
+    });
+
+    new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (mutation.type === 'attributes' && mutation.target instanceof HTMLImageElement) {
+          repairImages(mutation.target.parentNode || document);
+        }
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType === Node.ELEMENT_NODE) repairImages(node);
+        });
+      }
+    }).observe(document.documentElement, {
+      subtree: true,
+      childList: true,
+      attributes: true,
+      attributeFilter: ['src'],
+    });
+  });
+
+  window._gaq = { push() {} };
+})();
+`;
+
+await access(indexPath);
+let html = await readFile(indexPath, 'utf8');
+
+html = html
+  .replace(/(?:\.\.\/|\.\/|\/)img\//g, 'assets/www.sleepwithremee.com/img/')
+  .replace(/href=["']favicon\.png["']/gi, 'href="assets/www.sleepwithremee.com/img/logo.png"');
+
+await mkdir(path.dirname(analyticsPath), { recursive: true });
+await writeFile(analyticsPath, shim, 'utf8');
+await writeFile(indexPath, html, 'utf8');
+await writeFile(path.join(snapshot, '404.html'), html, 'utf8');
+await writeFile(path.join(snapshot, '.nojekyll'), '', 'utf8');
+await writeFile(path.join(snapshot, 'json_user_info.php'), '{"logged_in":false}\n', 'utf8');
+
+console.log('Sanitized Remee snapshot for offline and GitHub Pages use.');
