@@ -86,9 +86,10 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
 
-      - name: Commit captured snapshot
+      - name: Commit and publish captured snapshot
         shell: bash
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add snapshot package-lock.json
@@ -96,5 +97,9 @@ jobs:
             echo "No archive changes to commit"
           else
             git commit -m "Archive and validate Remee programmer"
-            git push
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
+
+          # GitHub Pages is configured for this legacy branch.
+          git push origin HEAD:archive-programmer --force
