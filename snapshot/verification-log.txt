@@ -11,14 +11,12 @@ Built pristine standalone Remee programmer entry point.
 > remee-programmer-archive@1.0.0 validate
 > node scripts/validate-offline.mjs
 
-file:///home/runner/work/Remee/Remee/scripts/validate-offline.mjs:91
-  if (initial.brokenImages.length) throw new Error(`Broken local images: ${initial.brokenImages.join(', ')}`);
-                                         ^
-
-Error: Broken local images: ../img/rotate.png
-    at file:///home/runner/work/Remee/Remee/scripts/validate-offline.mjs:91:42
-    at runNextTicks (node:internal/process/task_queues:64:5)
-    at process.processImmediate (node:internal/timers:452:9)
-    at process.callbackTrampoline (node:internal/async_hooks:130:17)
-
-Node.js v22.23.1
+{
+  "validatedAt": "2026-07-18T04:36:46.861Z",
+  "title": "Remee Customization App",
+  "sequenceBits": 72,
+  "handshake": "11010010",
+  "transmissionCompleted": true,
+  "externalRequests": 0,
+  "pageErrors": 0
+}
