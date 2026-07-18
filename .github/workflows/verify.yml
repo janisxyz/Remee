@@ -1,0 +1,75 @@
+name: Verify standalone Remee snapshot
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/verify.yml
+      - scripts/sanitize.mjs
+      - scripts/validate-offline.mjs
+      - snapshot/index.html
+      - snapshot/assets/**
+
+permissions:
+  contents: write
+
+concurrency:
+  group: remee-standalone-verification
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Validate tooling syntax
+        run: npm run check
+
+      - name: Cache Playwright Chromium
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Chromium system dependencies
+        run: npx playwright install-deps chromium
+
+      - name: Install Chromium browser
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: npx playwright install chromium
+
+      - name: Sanitize snapshot
+        run: npm run sanitize
+
+      - name: Run offline browser validation
+        run: npm run validate
+
+      - name: Commit validation evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add snapshot
+          if git diff --cached --quiet; then
+            echo "Validation produced no repository changes"
+            exit 0
+          fi
+          git commit -m "Validate standalone Remee programmer"
+          git pull --rebase origin main
+          git push origin HEAD:main
