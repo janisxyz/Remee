@@ -1,0 +1,50 @@
+name: Deploy Remee snapshot
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - snapshot/**
+      - .github/workflows/pages.yml
+  schedule:
+    - cron: '17 3 1 * *'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Verify snapshot
+        run: |
+          test -s snapshot/index.html
+          touch snapshot/.nojekyll
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload snapshot
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: snapshot
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
