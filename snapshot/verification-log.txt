@@ -1,0 +1,23 @@
+
+> remee-programmer-archive@1.0.0 check
+> node --check scripts/archive.mjs && node --check scripts/sanitize.mjs && node --check scripts/validate-offline.mjs && node --check scripts/offline-shim.js
+
+
+> remee-programmer-archive@1.0.0 sanitize
+> node scripts/sanitize.mjs
+
+Sanitized Remee snapshot for offline and GitHub Pages use.
+
+> remee-programmer-archive@1.0.0 validate
+> node scripts/validate-offline.mjs
+
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.waitForFunction: Timeout 30000ms exceeded.
+    at /home/runner/work/Remee/Remee/scripts/validate-offline.mjs:104:14 {
+  name: 'TimeoutError'
+}
+
+Node.js v22.23.1
