@@ -6,18 +6,16 @@
 > remee-programmer-archive@1.0.0 sanitize
 > node scripts/sanitize.mjs
 
-Sanitized Remee snapshot for offline and GitHub Pages use.
+Built pristine standalone Remee programmer entry point.
 
 > remee-programmer-archive@1.0.0 validate
 > node scripts/validate-offline.mjs
 
-node:internal/modules/run_main:123
-    triggerUncaughtException(
-    ^
+file:///home/runner/work/Remee/Remee/scripts/validate-offline.mjs:91
+  if (initial.brokenImages.length) throw new Error(`Broken local images: ${initial.brokenImages.join(', ')}`);
+                                         ^
 
-page.waitForFunction: Timeout 30000ms exceeded.
-    at /home/runner/work/Remee/Remee/scripts/validate-offline.mjs:104:14 {
-  name: 'TimeoutError'
-}
+Error: Broken local images: assets/www.sleepwithremee.com/img/rotate.png, assets/www.sleepwithremee.com/img/close.png, assets/www.sleepwithremee.com/img/close.png, assets/www.sleepwithremee.com/img/close.png, assets/www.sleepwithremee.com/img/close.png, assets/www.sleepwithremee.com/img/close.png, assets/www.sleepwithremee.com/img/3f.gif, assets/www.sleepwithremee.com/img/close.png, assets/www.sleepwithremee.com/img/10f.gif, assets/www.sleepwithremee.com/img/close.png, assets/www.sleepwithremee.com/img/3f.gif, assets/www.sleepwithremee.com/img/icon_success.png, assets/www.sleepwithremee.com/img/mask_success.gif, assets/www.sleepwithremee.com/img/icon_fail.png, assets/www.sleepwithremee.com/img/mask_fail.gif, assets/www.sleepwithremee.com/img/logo.png
+    at file:///home/runner/work/Remee/Remee/scripts/validate-offline.mjs:91:42
 
 Node.js v22.23.1
