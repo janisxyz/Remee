@@ -12,10 +12,12 @@ Built pristine standalone Remee programmer entry point.
 > node scripts/validate-offline.mjs
 
 {
-  "validatedAt": "2026-07-18T04:36:46.861Z",
+  "validatedAt": "2026-07-18T04:38:01.652Z",
   "title": "Remee Customization App",
   "sequenceBits": 72,
   "handshake": "11010010",
+  "updateButtonTriggered": true,
+  "firstObservedSequenceIndex": 1,
   "transmissionCompleted": true,
   "externalRequests": 0,
   "pageErrors": 0
