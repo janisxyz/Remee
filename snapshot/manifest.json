@@ -1,0 +1,289 @@
+{
+  "archivedAt": "2026-07-18T03:53:12.230Z",
+  "source": "http://www.sleepwithremee.com/config.php",
+  "finalUrl": "http://www.sleepwithremee.com/config.php",
+  "files": [
+    {
+      "url": "https://www.remee.me/",
+      "path": "assets/www.remee.me/index.html",
+      "contentType": "text/html",
+      "bytes": 85
+    },
+    {
+      "url": "http://www.sleepwithremee.com/config.php",
+      "path": "assets/www.sleepwithremee.com/config.php",
+      "contentType": "text/html",
+      "bytes": 22296
+    },
+    {
+      "url": "http://fonts.googleapis.com/css?family=Open+Sans:400,600,700",
+      "path": "assets/fonts.googleapis.com/css.184f77828f.css",
+      "contentType": "text/css",
+      "bytes": 17352
+    },
+    {
+      "url": "http://www.sleepwithremee.com/css/custom-theme/jquery-ui-1.9.0.custom.css",
+      "path": "assets/www.sleepwithremee.com/css/custom-theme/jquery-ui-1.9.0.custom.css",
+      "contentType": "text/css",
+      "bytes": 25803
+    },
+    {
+      "url": "http://www.sleepwithremee.com/css/jquery.dumbselect.css",
+      "path": "assets/www.sleepwithremee.com/css/jquery.dumbselect.css",
+      "contentType": "text/css",
+      "bytes": 2341
+    },
+    {
+      "url": "http://www.sleepwithremee.com/css/base.css",
+      "path": "assets/www.sleepwithremee.com/css/base.css",
+      "contentType": "text/css",
+      "bytes": 17614
+    },
+    {
+      "url": "http://www.sleepwithremee.com/css/toggle-switch.css",
+      "path": "assets/www.sleepwithremee.com/css/toggle-switch.css",
+      "contentType": "text/css",
+      "bytes": 9044
+    },
+    {
+      "url": "http://www.sleepwithremee.com/js/jquery.dumbselect.js",
+      "path": "assets/www.sleepwithremee.com/js/jquery.dumbselect.js",
+      "contentType": "text/javascript",
+      "bytes": 14097
+    },
+    {
+      "url": "http://www.sleepwithremee.com/js/blinker.js",
+      "path": "assets/www.sleepwithremee.com/js/blinker.js",
+      "contentType": "text/javascript",
+      "bytes": 4649
+    },
+    {
+      "url": "http://www.sleepwithremee.com/js/blinker_ui.js",
+      "path": "assets/www.sleepwithremee.com/js/blinker_ui.js",
+      "contentType": "text/javascript",
+      "bytes": 16091
+    },
+    {
+      "url": "http://www.sleepwithremee.com/js/jquery.watermark.js",
+      "path": "assets/www.sleepwithremee.com/js/jquery.watermark.js",
+      "contentType": "text/javascript",
+      "bytes": 20259
+    },
+    {
+      "url": "http://www.sleepwithremee.com/js/jquery-1.9.1.js",
+      "path": "assets/www.sleepwithremee.com/js/jquery-1.9.1.js",
+      "contentType": "text/javascript",
+      "bytes": 268381
+    },
+    {
+      "url": "http://www.sleepwithremee.com/js/jquery-ui-1.10.1.custom.js",
+      "path": "assets/www.sleepwithremee.com/js/jquery-ui-1.10.1.custom.js",
+      "contentType": "text/javascript",
+      "bytes": 434343
+    },
+    {
+      "url": "http://www.sleepwithremee.com/js/blinker_user.js",
+      "path": "assets/www.sleepwithremee.com/js/blinker_user.js",
+      "contentType": "text/javascript",
+      "bytes": 6794
+    },
+    {
+      "url": "http://www.sleepwithremee.com/js/jquery.ui.touch-punch.min.js",
+      "path": "assets/www.sleepwithremee.com/js/jquery.ui.touch-punch.min.js",
+      "contentType": "text/javascript",
+      "bytes": 1190
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/rotate.png",
+      "path": "assets/www.sleepwithremee.com/img/rotate.png",
+      "contentType": "image/png",
+      "bytes": 3720
+    },
+    {
+      "url": "http://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2",
+      "path": "assets/fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2",
+      "contentType": "font/woff2",
+      "bytes": 48320
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/close.png",
+      "path": "assets/www.sleepwithremee.com/img/close.png",
+      "contentType": "image/png",
+      "bytes": 524
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/mask_success.gif",
+      "path": "assets/www.sleepwithremee.com/img/mask_success.gif",
+      "contentType": "image/gif",
+      "bytes": 24156
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/mask_fail.gif",
+      "path": "assets/www.sleepwithremee.com/img/mask_fail.gif",
+      "contentType": "image/gif",
+      "bytes": 4228
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/logo.png",
+      "path": "assets/www.sleepwithremee.com/img/logo.png",
+      "contentType": "image/png",
+      "bytes": 13420
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/icon_success.png",
+      "path": "assets/www.sleepwithremee.com/img/icon_success.png",
+      "contentType": "image/png",
+      "bytes": 1533
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/icon_fail.png",
+      "path": "assets/www.sleepwithremee.com/img/icon_fail.png",
+      "contentType": "image/png",
+      "bytes": 3711
+    },
+    {
+      "url": "http://www.google-analytics.com/ga.js",
+      "path": "assets/www.google-analytics.com/ga.js",
+      "contentType": "text/javascript",
+      "bytes": 46274
+    },
+    {
+      "url": "http://www.google-analytics.com/r/__utm.gif?utmwv=5.7.2&utms=1&utmn=218606528&utmhn=www.sleepwithremee.com&utmcs=UTF-8&utmsr=1440x1000&utmvp=1440x1000&utmsc=24-bit&utmul=en-us&utmje=0&utmfl=-&utmdt=Remee%20Customization%20App&utmhid=1399851229&utmr=-&utmp=%2Fconfig.php&utmht=1784346786389&utmac=UA-32776075-1&utmcc=__utma%3D107291968.23567161.1784346786.1784346786.1784346786.1%3B%2B__utmz%3D107291968.1784346786.1.1.utmcsr%3D(direct)%7Cutmccn%3D(direct)%7Cutmcmd%3D(none)%3B&utmjid=1044484317&utmredir=1&utmu=qAAAAAAAAAAAAAAAAAAAAAAE~",
+      "path": "assets/www.google-analytics.com/r/utm.385db321bd.gif",
+      "contentType": "image/gif",
+      "bytes": 35
+    },
+    {
+      "url": "http://www.sleepwithremee.com/css/custom-theme/images/ui-bg_flat_75_ffffff_40x100.png",
+      "path": "assets/www.sleepwithremee.com/css/custom-theme/images/ui-bg_flat_75_ffffff_40x100.png",
+      "contentType": "image/png",
+      "bytes": 178
+    },
+    {
+      "url": "http://www.sleepwithremee.com/css/custom-theme/images/ui-icons_222222_256x240.png",
+      "path": "assets/www.sleepwithremee.com/css/custom-theme/images/ui-icons_222222_256x240.png",
+      "contentType": "image/png",
+      "bytes": 4369
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/1f.gif",
+      "path": "assets/www.sleepwithremee.com/img/1f.gif",
+      "contentType": "image/gif",
+      "bytes": 42833
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/1s.gif",
+      "path": "assets/www.sleepwithremee.com/img/1s.gif",
+      "contentType": "image/gif",
+      "bytes": 44585
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/2f.gif",
+      "path": "assets/www.sleepwithremee.com/img/2f.gif",
+      "contentType": "image/gif",
+      "bytes": 42769
+    },
+    {
+      "url": "http://www.sleepwithremee.com/json_user_info.php",
+      "path": "assets/www.sleepwithremee.com/json_user_info.php",
+      "contentType": "text/html",
+      "bytes": 19
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/2s.gif",
+      "path": "assets/www.sleepwithremee.com/img/2s.gif",
+      "contentType": "image/gif",
+      "bytes": 44545
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/3f.gif",
+      "path": "assets/www.sleepwithremee.com/img/3f.gif",
+      "contentType": "image/gif",
+      "bytes": 70742
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/4f.gif",
+      "path": "assets/www.sleepwithremee.com/img/4f.gif",
+      "contentType": "image/gif",
+      "bytes": 19288
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/4s.gif",
+      "path": "assets/www.sleepwithremee.com/img/4s.gif",
+      "contentType": "image/gif",
+      "bytes": 19864
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/5s.gif",
+      "path": "assets/www.sleepwithremee.com/img/5s.gif",
+      "contentType": "image/gif",
+      "bytes": 22660
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/5f.gif",
+      "path": "assets/www.sleepwithremee.com/img/5f.gif",
+      "contentType": "image/gif",
+      "bytes": 21916
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/6f.gif",
+      "path": "assets/www.sleepwithremee.com/img/6f.gif",
+      "contentType": "image/gif",
+      "bytes": 47606
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/7f.gif",
+      "path": "assets/www.sleepwithremee.com/img/7f.gif",
+      "contentType": "image/gif",
+      "bytes": 39550
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/7s.gif",
+      "path": "assets/www.sleepwithremee.com/img/7s.gif",
+      "contentType": "image/gif",
+      "bytes": 40558
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/8s.gif",
+      "path": "assets/www.sleepwithremee.com/img/8s.gif",
+      "contentType": "image/gif",
+      "bytes": 58556
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/6s.gif",
+      "path": "assets/www.sleepwithremee.com/img/6s.gif",
+      "contentType": "image/gif",
+      "bytes": 91707
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/8f.gif",
+      "path": "assets/www.sleepwithremee.com/img/8f.gif",
+      "contentType": "image/gif",
+      "bytes": 50398
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/9f.gif",
+      "path": "assets/www.sleepwithremee.com/img/9f.gif",
+      "contentType": "image/gif",
+      "bytes": 54951
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/9s.gif",
+      "path": "assets/www.sleepwithremee.com/img/9s.gif",
+      "contentType": "image/gif",
+      "bytes": 54922
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/10f.gif",
+      "path": "assets/www.sleepwithremee.com/img/10f.gif",
+      "contentType": "image/gif",
+      "bytes": 57851
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/3s.gif",
+      "path": "assets/www.sleepwithremee.com/img/3s.gif",
+      "contentType": "image/gif",
+      "bytes": 73060
+    }
+  ]
+}

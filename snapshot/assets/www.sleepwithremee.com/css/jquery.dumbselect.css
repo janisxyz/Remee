@@ -1,0 +1,222 @@
+.dd-select
+
+{
+
+    position:       relative;
+
+    /*box-shadow: 2px 2px 4px #ccc;*/
+
+    cursor:         pointer;
+
+}
+
+.dd-desc
+
+{
+
+    display:        block;
+
+    overflow:       hidden;
+
+    color:          #aaa;
+
+    font-weight:    normal;
+
+    line-height:    1.4em;
+
+}
+
+.dd-selected
+
+{
+
+    display:        block;
+
+    overflow:       hidden;
+
+    padding:        7px;
+
+    font-weight:    bold;
+
+    background:     #f5f5f5;
+    
+    border: 1px solid #ddd;
+
+}
+
+.dd-pointer
+
+{
+
+    position:       absolute;
+
+    right:          10px;
+
+    top:            50%;
+
+    width:          0;
+
+    height:         0;
+
+    margin-top:     -3px;
+
+}
+
+.dd-pointer-down
+
+{
+
+    border:         solid 5px transparent;
+
+    border-top:     solid 5px #000;
+
+}
+
+.dd-pointer-up
+
+{
+
+    border:         solid 5px transparent !important;
+
+    border-bottom:  solid 5px #000 !important;
+
+    margin-top:     -8px;
+
+}
+
+.dd-options
+
+{
+
+    display:        none;
+
+    position:       absolute;
+
+    overflow:       auto;
+
+    border:         solid 1px #ccc;
+
+    border-top:     none;
+
+    list-style:     none;
+
+    box-shadow:     0px 1px 5px #ddd;
+
+    z-index:        2000;
+
+    margin:         0;
+
+    padding:        0;
+
+    background:     #fff;
+
+}
+
+.dd-option
+
+{
+
+    display:        block;
+
+    overflow:       hidden;
+
+    padding:        9px;
+
+    border-bottom:  solid 1px #ddd;
+
+    text-decoration: none;
+
+    color:          #333;
+
+    cursor:         pointer;
+
+    -webkit-transition: all 0.25s ease-in-out;
+
+    -moz-transition: all 0.25s ease-in-out;
+
+    -o-transition:  all 0.25s ease-in-out;
+
+    -ms-transition: all 0.25s ease-in-out;
+
+    font-size: 0.9em;
+
+}
+
+.dd-options > li:last-child > .dd-option
+
+{
+
+    border-bottom:  none;
+
+}
+
+.dd-option:hover
+
+{
+
+    background:     #f3f3f3;
+
+    color:          #000;
+
+}
+
+.dd-selected-description-truncated
+
+{
+
+    text-overflow:  ellipsis;
+
+    white-space:    nowrap;
+
+}
+
+.dd-option-selected
+
+{
+
+    background:     #f6f6f6;
+
+}
+
+.dd-option-image, .dd-selected-image
+
+{
+
+    float:          left;
+
+    vertical-align: middle;
+
+    margin-right:   5px;
+
+    max-width:      64px;
+
+}
+
+.dd-image-right
+
+{
+
+    float:          right;
+
+    margin-right:   15px;
+
+    margin-left:    5px;
+
+}
+
+.dd-container
+
+{
+
+    position:       relative;
+
+}
+
+.dd-selected-text
+
+{
+
+    font-weight:    bold
+
+}
+
