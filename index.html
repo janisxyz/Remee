@@ -16,6 +16,9 @@
       if (!response.ok) throw new Error(`Could not load archived programmer: HTTP ${response.status}`);
 
       let html = await response.text();
+      html = html
+        .replace(/\.\.\/img\//g, 'img/')
+        .replace(/href=["']favicon\.png["']/gi, 'href="img/logo.png"');
       html = html.replace(
         /<head([^>]*)>/i,
         `<head$1><base href="${assetBase.href}"><script src="${shim.href}"><\/script>`,
