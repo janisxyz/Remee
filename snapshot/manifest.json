@@ -1,5 +1,5 @@
 {
-  "archivedAt": "2026-08-01T06:08:04.914Z",
+  "archivedAt": "2026-09-01T08:37:22.551Z",
   "source": "http://www.sleepwithremee.com/config.php",
   "finalUrl": "http://www.sleepwithremee.com/config.php",
   "files": [
@@ -16,16 +16,16 @@
       "bytes": 22296
     },
     {
-      "url": "http://fonts.googleapis.com/css?family=Open+Sans:400,600,700",
-      "path": "assets/fonts.googleapis.com/css.184f77828f.css",
-      "contentType": "text/css",
-      "bytes": 17352
-    },
-    {
       "url": "http://www.sleepwithremee.com/css/custom-theme/jquery-ui-1.9.0.custom.css",
       "path": "assets/www.sleepwithremee.com/css/custom-theme/jquery-ui-1.9.0.custom.css",
       "contentType": "text/css",
       "bytes": 25803
+    },
+    {
+      "url": "http://fonts.googleapis.com/css?family=Open+Sans:400,600,700",
+      "path": "assets/fonts.googleapis.com/css.184f77828f.css",
+      "contentType": "text/css",
+      "bytes": 17352
     },
     {
       "url": "http://www.sleepwithremee.com/css/jquery.dumbselect.css",
@@ -70,6 +70,18 @@
       "bytes": 16091
     },
     {
+      "url": "http://www.sleepwithremee.com/js/blinker_user.js",
+      "path": "assets/www.sleepwithremee.com/js/blinker_user.js",
+      "contentType": "text/javascript",
+      "bytes": 6794
+    },
+    {
+      "url": "http://www.sleepwithremee.com/js/jquery-ui-1.10.1.custom.js",
+      "path": "assets/www.sleepwithremee.com/js/jquery-ui-1.10.1.custom.js",
+      "contentType": "text/javascript",
+      "bytes": 434343
+    },
+    {
       "url": "http://www.sleepwithremee.com/js/jquery-1.9.1.js",
       "path": "assets/www.sleepwithremee.com/js/jquery-1.9.1.js",
       "contentType": "text/javascript",
@@ -82,22 +94,10 @@
       "bytes": 1190
     },
     {
-      "url": "http://www.sleepwithremee.com/js/jquery-ui-1.10.1.custom.js",
-      "path": "assets/www.sleepwithremee.com/js/jquery-ui-1.10.1.custom.js",
-      "contentType": "text/javascript",
-      "bytes": 434343
-    },
-    {
       "url": "http://www.sleepwithremee.com/img/rotate.png",
       "path": "assets/www.sleepwithremee.com/img/rotate.png",
       "contentType": "image/png",
       "bytes": 3720
-    },
-    {
-      "url": "http://www.sleepwithremee.com/js/blinker_user.js",
-      "path": "assets/www.sleepwithremee.com/js/blinker_user.js",
-      "contentType": "text/javascript",
-      "bytes": 6794
     },
     {
       "url": "http://www.sleepwithremee.com/img/close.png",
@@ -118,22 +118,16 @@
       "bytes": 4228
     },
     {
-      "url": "http://www.sleepwithremee.com/img/icon_success.png",
-      "path": "assets/www.sleepwithremee.com/img/icon_success.png",
-      "contentType": "image/png",
-      "bytes": 1533
-    },
-    {
       "url": "http://www.sleepwithremee.com/img/icon_fail.png",
       "path": "assets/www.sleepwithremee.com/img/icon_fail.png",
       "contentType": "image/png",
       "bytes": 3711
     },
     {
-      "url": "http://www.google-analytics.com/ga.js",
-      "path": "assets/www.google-analytics.com/ga.js",
-      "contentType": "text/javascript",
-      "bytes": 46274
+      "url": "http://www.sleepwithremee.com/img/icon_success.png",
+      "path": "assets/www.sleepwithremee.com/img/icon_success.png",
+      "contentType": "image/png",
+      "bytes": 1533
     },
     {
       "url": "http://www.sleepwithremee.com/img/logo.png",
@@ -142,16 +136,16 @@
       "bytes": 13420
     },
     {
+      "url": "http://www.google-analytics.com/ga.js",
+      "path": "assets/www.google-analytics.com/ga.js",
+      "contentType": "text/javascript",
+      "bytes": 46274
+    },
+    {
       "url": "http://www.sleepwithremee.com/css/custom-theme/images/ui-bg_flat_75_ffffff_40x100.png",
       "path": "assets/www.sleepwithremee.com/css/custom-theme/images/ui-bg_flat_75_ffffff_40x100.png",
       "contentType": "image/png",
       "bytes": 178
-    },
-    {
-      "url": "http://www.sleepwithremee.com/css/custom-theme/images/ui-icons_222222_256x240.png",
-      "path": "assets/www.sleepwithremee.com/css/custom-theme/images/ui-icons_222222_256x240.png",
-      "contentType": "image/png",
-      "bytes": 4369
     },
     {
       "url": "http://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2",
@@ -160,10 +154,10 @@
       "bytes": 48320
     },
     {
-      "url": "http://www.google-analytics.com/r/__utm.gif?utmwv=5.7.2&utms=1&utmn=193829734&utmhn=www.sleepwithremee.com&utmcs=UTF-8&utmsr=1440x1000&utmvp=1440x1000&utmsc=24-bit&utmul=en-us&utmje=0&utmfl=-&utmdt=Remee%20Customization%20App&utmhid=2023614686&utmr=-&utmp=%2Fconfig.php&utmht=1785564478440&utmac=UA-32776075-1&utmcc=__utma%3D107291968.397180445.1785564478.1785564478.1785564478.1%3B%2B__utmz%3D107291968.1785564478.1.1.utmcsr%3D(direct)%7Cutmccn%3D(direct)%7Cutmcmd%3D(none)%3B&utmjid=1106334296&utmredir=1&utmu=qAAAAAAAAAAAAAAAAAAAAAAE~",
-      "path": "assets/www.google-analytics.com/r/utm.3d70368ce1.gif",
-      "contentType": "image/gif",
-      "bytes": 35
+      "url": "http://www.sleepwithremee.com/css/custom-theme/images/ui-icons_222222_256x240.png",
+      "path": "assets/www.sleepwithremee.com/css/custom-theme/images/ui-icons_222222_256x240.png",
+      "contentType": "image/png",
+      "bytes": 4369
     },
     {
       "url": "http://www.sleepwithremee.com/img/1f.gif",
@@ -172,16 +166,22 @@
       "bytes": 42833
     },
     {
+      "url": "http://www.sleepwithremee.com/img/1s.gif",
+      "path": "assets/www.sleepwithremee.com/img/1s.gif",
+      "contentType": "image/gif",
+      "bytes": 44585
+    },
+    {
       "url": "http://www.sleepwithremee.com/img/2f.gif",
       "path": "assets/www.sleepwithremee.com/img/2f.gif",
       "contentType": "image/gif",
       "bytes": 42769
     },
     {
-      "url": "http://www.sleepwithremee.com/img/1s.gif",
-      "path": "assets/www.sleepwithremee.com/img/1s.gif",
+      "url": "http://www.google-analytics.com/r/__utm.gif?utmwv=5.7.2&utms=1&utmn=1895235473&utmhn=www.sleepwithremee.com&utmcs=UTF-8&utmsr=1440x1000&utmvp=1440x1000&utmsc=24-bit&utmul=en-us&utmje=0&utmfl=-&utmdt=Remee%20Customization%20App&utmhid=647736502&utmr=-&utmp=%2Fconfig.php&utmht=1788251836023&utmac=UA-32776075-1&utmcc=__utma%3D107291968.892492101.1788251836.1788251836.1788251836.1%3B%2B__utmz%3D107291968.1788251836.1.1.utmcsr%3D(direct)%7Cutmccn%3D(direct)%7Cutmcmd%3D(none)%3B&utmjid=513650700&utmredir=1&utmu=qAAAAAAAAAAAAAAAAAAAAAAE~",
+      "path": "assets/www.google-analytics.com/r/utm.ceb1b1ce0c.gif",
       "contentType": "image/gif",
-      "bytes": 44585
+      "bytes": 35
     },
     {
       "url": "http://www.sleepwithremee.com/json_user_info.php",
@@ -226,28 +226,28 @@
       "bytes": 21916
     },
     {
-      "url": "http://www.sleepwithremee.com/img/6f.gif",
-      "path": "assets/www.sleepwithremee.com/img/6f.gif",
-      "contentType": "image/gif",
-      "bytes": 47606
-    },
-    {
       "url": "http://www.sleepwithremee.com/img/5s.gif",
       "path": "assets/www.sleepwithremee.com/img/5s.gif",
       "contentType": "image/gif",
       "bytes": 22660
     },
     {
-      "url": "http://www.sleepwithremee.com/img/6s.gif",
-      "path": "assets/www.sleepwithremee.com/img/6s.gif",
+      "url": "http://www.sleepwithremee.com/img/6f.gif",
+      "path": "assets/www.sleepwithremee.com/img/6f.gif",
       "contentType": "image/gif",
-      "bytes": 91707
+      "bytes": 47606
     },
     {
       "url": "http://www.sleepwithremee.com/img/7s.gif",
       "path": "assets/www.sleepwithremee.com/img/7s.gif",
       "contentType": "image/gif",
       "bytes": 40558
+    },
+    {
+      "url": "http://www.sleepwithremee.com/img/6s.gif",
+      "path": "assets/www.sleepwithremee.com/img/6s.gif",
+      "contentType": "image/gif",
+      "bytes": 91707
     },
     {
       "url": "http://www.sleepwithremee.com/img/7f.gif",
